@@ -1,3 +1,4 @@
+;;1.9
    (define removeall
     (lambda (s los)
       (if (null? los)
@@ -5,3 +6,5 @@
         (if (eqv? (car los) s)
           (removeall s (cdr los))
           (cons (car los) (removeall s (cdr los)))))))
+
+;;1.12
