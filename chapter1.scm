@@ -34,6 +34,24 @@
          (substmap new old sexp))))
          
    (equal?? (substmap 'a 'b '((b c) (b () d))) '((a c) (a () d))) 
+   
+;;1.15  
+;(duple n x) returns a list containing n copies of x.
+;>(duple 2 3)
+;(3 3)
+; > (duple 4 '(ha ha))
+; ((ha ha) (ha ha) (ha ha) (ha ha))
+; > (duple 0 '(blah))
+; '()
+
+;duple: int × Sym → Lst(Sym)
+; usage: takes an argument item and returns a list of containing n copies of item.
+(define duple
+     (lambda (n x)
+       (if (eqv? n 0)
+           '()
+           (cons x (duple (- n 1) x)))))
+> (duple 2 3)
 
 ;;1.18
 
