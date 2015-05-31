@@ -34,3 +34,22 @@
          (substmap new old sexp))))
          
    (equal?? (substmap 'a 'b '((b c) (b () d))) '((a c) (a () d))) 
+
+;;1.18
+
+   (define substswap
+     (lambda (s1 s2 slist)
+       (map (lambda (sexp) (subst-in-s-expswap s1 s2 sexp))
+            slist)))
+   
+   
+   (define subst-in-s-expswap
+     (lambda (s1 s2 sexp)
+       (if (symbol? sexp)
+         (cond ((eqv? sexp s2) s1)
+               ((eqv? sexp s1) s2)
+               (else sexp))
+         (substswap s1 s2 sexp))))
+         
+   (equal?? (substswap 'a 'd '((d c) (b () d))) '((a c) (a () d))) 
+   
