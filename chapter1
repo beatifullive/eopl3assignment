@@ -1,5 +1,3 @@
-```scheme
-
 ;;1.9
    (define removeall
     (lambda (s los)
